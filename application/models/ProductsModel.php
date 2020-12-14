@@ -1,28 +1,29 @@
 <?php
     class ProductsModel extends CI_Model{
-        
-        public function get_products(){
-            if(!empty($this->input->get("search"))){
-              $this->db->like('title', $this->input->get("search"));
-              $this->db->or_like('description', $this->input->get("search")); 
-            }
+         
+        public function get_products($search=false){
             $query = $this->db->get("products");
             return $query->result();
+        }       
+ 
+        public function find_products($search=false){
+            if($search){
+              $this->db->like('title', $search.' %');
+              $this->db->or_like('description', $search); 
+              $query = $this->db->get("products");
+              return $query->result();
+            }
         }
-        public function insert_product()
-        {    
-            $data = array(
-                'title' => $this->input->post('title'),
-                'description' => $this->input->post('description')
-            );
+
+        
+        public function insert_product($data)
+        {
             return $this->db->insert('products', $data);
         }
-        public function update_product($id) 
+  
+  
+        public function update_product($id,$data) 
         {
-            $data=array(
-                'title' => $this->input->post('title'),
-                'description'=> $this->input->post('description')
-            );
             if($id==0){
                 return $this->db->insert('products',$data);
             }else{
@@ -30,5 +31,6 @@
                 return $this->db->update('products',$data);
             }        
         }
+
     }
     ?>

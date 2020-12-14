@@ -20,12 +20,18 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url('products') ?>">List Products</a>
-	  </li>
-	  <li class="nav-item">
-		<a class="nav-link" href="<?= base_url() ?>auth/logout">Logout</a>
-	  </li>
-      
+      </li>
+      <?php if ($this->ion_auth->logged_in()){ ?>
+	    <li class="nav-item">
+		    <a class="nav-link" href="<?= base_url() ?>auth/logout">Logout</a>
+      </li>
+      <?php } ?>
     </ul>
+    <form class="form-inline my-2 my-lg-0" action="search/index" method="POST">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
   </div>
 </nav>
     <div class="container">
+<br>
