@@ -1,24 +1,13 @@
-    <form method="post" action="<?php echo base_url('products/update/'.$product->id);?>">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="form-group">
-                    <label class="col-md-3">Judul</label>
-                    <div class="col-md-9">
-                        <input type="text" name="title" class="form-control" value="<?php echo $product->title; ?>">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8 col-md-offset-2">
-                <div class="form-group">
-                    <label class="col-md-3">Deskripsi</label>
-                    <div class="col-md-9">
-                        <textarea name="description" class="form-control"><?php echo $product->description; ?></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8 col-md-offset-2 pull-right">
-                <input type="submit" name="Save" class="btn" value="Simpan">
-            </div>
-        </div>
-        
-    </form>
+<div class="jumbotron">
+<form class="form-group" method="post" action="<?php echo base_url('products/update/'.$product->id);?>">
+  <div class="form-group">
+    <label for="title">Judul</label>
+    <input type="text" class="form-control" id="title" name="title" value="<?php echo $product->title; ?>">
+  </div>
+  <div class="form-group">
+    <label for="description">Deskripsi</label>
+    <textarea class="form-control" id="description" name="description" rows="3"><?php echo $product->description; ?></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
