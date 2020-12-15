@@ -53,6 +53,8 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['list']= "auth";
+$route['forgot'] = "auth/forgot_password";
 $route['register'] = "auth/create_user";
 $route['products'] = "products/index";
 $route['search'] = "search/index";

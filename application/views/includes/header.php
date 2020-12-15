@@ -25,6 +25,16 @@
 	    <li class="nav-item">
 		    <a class="nav-link" href="<?= base_url() ?>auth/logout">Logout</a>
       </li>
+      <li class="nav-item">
+		    <a class="nav-link" href="<?= base_url('register') ?>">Register New User</a>
+      </li>
+      <li class="nav-item">
+		    <a class="nav-link" href="<?= base_url('list') ?>">Users Lists</a>
+      </li>
+      <?php }else{ ?>
+      <li class="nav-item">
+		    <a class="nav-link" href="<?= base_url() ?>auth/login">Login</a>
+      </li>
       <?php } ?>
     </ul>
     <form class="form-inline my-2 my-lg-0" action="search/index" method="POST">

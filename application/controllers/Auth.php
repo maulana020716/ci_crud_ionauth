@@ -15,9 +15,7 @@ class Auth extends CI_Controller
 		$this->load->database();
 		$this->load->library(['ion_auth', 'form_validation']);
 		$this->load->helper(['url', 'language']);
-
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
-
 		$this->lang->load('auth');
 	}
 
@@ -54,8 +52,9 @@ class Auth extends CI_Controller
 			{
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
-
+			$this->load->view('includes/header');
 			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'index', $this->data);
+			$this->load->view('includes/footer');
 		}
 	}
 
@@ -177,7 +176,9 @@ class Auth extends CI_Controller
 			];
 
 			// render
+			$this->load->view('includes/header');
 			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'change_password', $this->data);
+			$this->load->view('includes/footer');
 		}
 		else
 		{
@@ -237,7 +238,9 @@ class Auth extends CI_Controller
 
 			// set any errors and display the form
 			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+			$this->load->view('includes/header');
 			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'forgot_password', $this->data);
+			$this->load->view('includes/footer');
 		}
 		else
 		{
@@ -330,7 +333,9 @@ class Auth extends CI_Controller
 				$this->data['code'] = $code;
 
 				// render
+				$this->load->view('includes/header');
 				$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'reset_password', $this->data);
+				$this->load->view('includes/footer');
 			}
 			else
 			{
@@ -432,7 +437,9 @@ class Auth extends CI_Controller
 			$this->data['user'] = $this->ion_auth->user($id)->row();
 			$this->data['identity'] = $this->config->item('identity', 'ion_auth');
 
+			$this->load->view('includes/header');
 			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'deactivate_user', $this->data);
+			$this->load->view('includes/footer');
 		}
 		else
 		{
@@ -460,6 +467,8 @@ class Auth extends CI_Controller
 	/**
 	 * Create a new user
 	 */
+
+
 	public function create_user()
 	{
 		$this->data['title'] = $this->lang->line('create_user_heading');
@@ -564,8 +573,9 @@ class Auth extends CI_Controller
 				'type' => 'password',
 				'value' => $this->form_validation->set_value('password_confirm'),
 			];
-
+			$this->load->view('includes/header');
 			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'create_user', $this->data);
+			$this->load->view('includes/footer');
 		}
 	}
 	/**
@@ -718,7 +728,9 @@ class Auth extends CI_Controller
 			'type' => 'password'
 		];
 
+		$this->load->view('includes/header');
 		$this->_render_page('auth/edit_user', $this->data);
+		$this->load->view('includes/footer');
 	}
 
 	/**
@@ -769,7 +781,9 @@ class Auth extends CI_Controller
 			'value' => $this->form_validation->set_value('description'),
 		];
 
+		$this->load->view('includes/header');
 		$this->_render_page('auth/create_group', $this->data);
+		$this->load->view('includes/footer');
 		
 	}
 
@@ -841,7 +855,9 @@ class Auth extends CI_Controller
 			'value' => $this->form_validation->set_value('group_description', $group->description),
 		];
 
+		$this->load->view('includes/header');
 		$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'edit_group', $this->data);
+		$this->load->view('includes/footer');
 	}
 
 	/**
